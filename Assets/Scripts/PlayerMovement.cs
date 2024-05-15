@@ -6,20 +6,26 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public float speed;
+    public float jumpHeight = 3.0f; // Variable para la fuerza de salto
 
     private Vector3 velocity;
     public float gravity = -9.81f;
+    private Animator animator;
 
     public bool isGrounded;
 
-    public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
         // Check ground
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = controller.isGrounded;
 
         if (isGrounded && velocity.y < 0)
         {
@@ -33,8 +39,24 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = (transform.right * x) + (transform.forward * z);
         controller.Move(speed * Time.deltaTime * move);
 
+        Vector3 localVelocity = transform.InverseTransformDirection(controller.velocity);
+        float velocityMagnitude = new Vector2(localVelocity.x, localVelocity.z).magnitude;
+        animator.SetFloat("Velocity", velocityMagnitude);
+
+        // Jump
+        Jump();
+
         // Gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); // Calcular la velocidad de salto
+            animator.SetTrigger("Jump");
+        }
     }
 }
