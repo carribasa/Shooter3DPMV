@@ -5464,13 +5464,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17235892, y: 0, z: 0, w: 0.9850343}
-  m_LocalPosition: {x: 0.059, y: 3.22, z: -3.821}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 3, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1027430959}
-  m_LocalEulerAnglesHint: {x: 19.85, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5756,7 +5756,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1027430961}
   speed: 12
-  gravity: -9.81
+  jumpHeight: 3
+  gravity: -30
   isGrounded: 0
   groundDistance: 0.4
   groundMask:
@@ -10670,37 +10671,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1696637533}
   m_SourcePrefab: {fileID: 100100000, guid: 147ddedb05f63ca4ba45f3d7b4a73b5f, type: 3}
---- !u!1 &2074456956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2074456957}
-  m_Layer: 0
-  m_Name: FPS_Character
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2074456957
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074456956}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.1723421, y: 0.013753242, z: -0.0024065091, w: 0.9849382}
-  m_LocalPosition: {x: -18.077, y: 3.0180001, z: -10.836}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 19.85, y: 1.6, z: 0}
 --- !u!1001 &2097225940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11066,7 +11036,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 705507995}
   - {fileID: 2018301324}
-  - {fileID: 2074456957}
   - {fileID: 957115964}
   - {fileID: 438362804}
   - {fileID: 1632760818}

@@ -29,24 +29,31 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2;
+            velocity.y = -2f;
         }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         // Horizontal movement
-        Vector3 move = (transform.right * x) + (transform.forward * z);
+        Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(speed * Time.deltaTime * move);
 
+        // Local velocity for animation
         Vector3 localVelocity = transform.InverseTransformDirection(controller.velocity);
         float velocityMagnitude = new Vector2(localVelocity.x, localVelocity.z).magnitude;
         animator.SetFloat("Velocity", velocityMagnitude);
 
+        // Set the grounded parameter
+        animator.SetBool("isGrounded", isGrounded);
+
+        // Set the vertical velocity parameter
+        animator.SetFloat("VerticalVelocity", velocity.y);
+
         // Jump
         Jump();
 
-        // Gravity
+        // Apply gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
