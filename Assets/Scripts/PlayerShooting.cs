@@ -5,8 +5,8 @@ public class PlayerShooting : MonoBehaviour
     public Camera playerCamera;
     public float shootingRange = 100f;
     public Animator animator;
-    public LayerMask playerLayer;  // Asigna la capa del jugador en el Inspector
-    public GameObject aim;         // Asigna el GameObject del puntero en el Inspector
+    public LayerMask playerLayer;
+    public GameObject aim;
 
     void Update()
     {
@@ -14,12 +14,6 @@ public class PlayerShooting : MonoBehaviour
         {
             Shoot();
         }
-    }
-
-    void Shoot()
-    {
-        animator.SetTrigger("Shoot");
-        animator.SetBool("isShooting", false);
 
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootingRange))
@@ -29,6 +23,18 @@ public class PlayerShooting : MonoBehaviour
                 aim.SetActive(false);
             }
             else
+            {
+                aim.SetActive(true);
+            }
+        }
+
+        void Shoot()
+        {
+            animator.SetTrigger("Shoot");
+            animator.SetBool("isShooting", false);
+
+            RaycastHit hit;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootingRange))
             {
                 Renderer renderer = hit.collider.GetComponent<Renderer>();
                 if (renderer != null)
